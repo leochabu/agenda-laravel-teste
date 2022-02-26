@@ -20,8 +20,7 @@ class ContatosController extends Controller
     }
 
     public function add(Request $request)
-    {
-        
+    { 
         $contato = new CriadorContato();
         $contato = $contato->criarContato($request);
         return redirect('/');
@@ -30,10 +29,10 @@ class ContatosController extends Controller
     public function projetos(Request $request)
     {
 
-        //var_dump($request->usuario_gh);
+        $usuario_gh = $request->usuario_gh;
        
-        $client = new Client(); //GuzzleHttp\Client
-        $url = "https://api.github.com/users/$request->usuario_gh/repos";
+        $client = new Client(); 
+        $url = "https://api.github.com/users/$usuario_gh/repos";
 
         $response = $client->request('GET', $url, [
             'verify'  => false,
@@ -42,7 +41,7 @@ class ContatosController extends Controller
         $responseBody = json_decode($response->getBody());
         
         
-        return view('contatos.projetos',compact('responseBody'));
+        return view('contatos.projetos',compact('responseBody','usuario_gh'));
 
     }
 }

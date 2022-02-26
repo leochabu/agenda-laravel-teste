@@ -4,20 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card-body">
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                @endif
-                <div class="row">
-                    <a href="{{url('contatos/new')}}">
-                        <button class="btn btn-primary">
-                            Adicionar contato
-                        </button>
-                    </a>
-                </div>
-                <h1>Lista de contatos</h1>
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+            <h1>Contatos</h1>
+            <div class="row">
                 <table class="table">
                     <thead>
                         <tr>
@@ -35,11 +28,18 @@
                             <td>{{$u->name}}</td>
                             <td>{{$u->email}}</td>
                             <td>{{$u->usuario_gh}}</td>
-                            <td><a href="contatos/{{$u->usuario_gh}}/projetos"><i class="fa fa-eye">link</i></a></td>
+                            <td><a href="contatos/{{$u->usuario_gh}}/projetos"><i class="fas fa-eye"></i></a></td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="row mt-2">
+                <a href="{{url('contatos/new')}}">
+                    <button class="btn btn-primary">
+                        Adicionar contato
+                    </button>
+                </a>
             </div>
         </div>
     </div>
